@@ -1,154 +1,175 @@
 {
-    "swagger" : "2.0",
-    "info" : {
-      "description" : "No description",
-      "version" : "1.0.0",
-      "title" : "New API",
-      "contact" : { }
-    },
-    "host" : "localhost:3000",
-    "schemes" : [ "http" ],
-    "consumes" : [ "application/json" ],
-    "produces" : [ "application/json" ],
-    "paths" : {
-      "/api/user" : {
-        "get" : {
-          "tags" : [ "user" ],
-          "summary" : "get all user",
-          "parameters" : [ ],
-          "responses" : {
-            "200" : {
-              "description" : "Status 200"
-            }
-          }
-        },
-        "post" : {
-          "tags" : [ "user" ],
-          "summary" : "Create User",
-          "consumes" : [ ],
-          "parameters" : [ {
-            "name" : "body",
-            "in" : "body",
-            "required" : true,
-            "schema" : {
-              "$ref" : "#/definitions/user"
-            }
-          } ],
-          "responses" : {
-            "200" : {
-              "description" : "Status 200"
-            }
-          }
-        }
-      },
-      "/api/user/{id}" : {
-        "get" : {
-          "tags" : [ "user" ],
-          "summary" : "Get user by ID",
-          "parameters" : [ ],
-          "responses" : {
-            "200" : {
-              "description" : "Sukses"
-            }
-          }
-        },
-        "parameters" : [ {
-          "name" : "id",
-          "in" : "path",
-          "required" : true,
-          "type" : "string"
-        } ]
-      },
-      "/api/user/update/{id}" : {
-        "put" : {
-          "tags" : [ "user" ],
-          "summary" : "Update user",
-          "consumes" : [ ],
-          "parameters" : [ {
-            "name" : "body",
-            "in" : "body",
-            "required" : true,
-            "schema" : {
-              "$ref" : "#/definitions/user"
-            }
-          } ],
-          "responses" : {
-            "200" : {
-              "description" : "Status 200"
-            }
-          }
-        },
-        "parameters" : [ {
-          "name" : "id",
-          "in" : "path",
-          "required" : true,
-          "type" : "string"
-        } ]
-      },
-      "/api/user/delete/{id}" : {
-        "delete" : {
-          "tags" : [ "user" ],
-          "summary" : "delete by id",
-          "parameters" : [ ],
-          "responses" : {
-            "200" : {
-              "description" : "Status 200"
-            }
-          }
-        },
-        "parameters" : [ {
-          "name" : "id",
-          "in" : "path",
-          "required" : true,
-          "type" : "string"
-        } ]
-      },
-      "/api/product" : {
-        "get" : {
-          "tags" : [ "product" ],
-          "summary" : "get",
-          "parameters" : [ ],
-          "responses" : {
-            "200" : {
-              "description" : "Status 200"
-            }
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "Berikut adalah dokumentasi backend untuk test backend paola",
+    "version" : "1.0.0",
+    "title" : "Paola Test Backend",
+    "contact" : { }
+  },
+  "host" : "localhost:6780",
+  "schemes" : [ "http" ],
+  "consumes" : [ "application/json" ],
+  "produces" : [ "application/json" ],
+  "paths" : {
+    "/api/contacts/" : {
+      "get" : {
+        "tags" : [ "contact" ],
+        "summary" : "Get All Contact",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation"
+          },
+          "500" : {
+            "description" : "Server Error"
           }
         }
       }
     },
-    "definitions" : {
-      "user" : {
-        "type" : "object",
-        "properties" : {
-          "username" : {
-            "type" : "string"
-          },
-          "password" : {
-            "type" : "string"
-          },
-          "email" : {
-            "type" : "string"
+    "/api/contact/add" : {
+      "post" : {
+        "tags" : [ "contact" ],
+        "summary" : "Add Contact",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/Contact"
           }
-        },
-        "example" : "{\n\t\"username\": \"tes\",\n\t\"password\": \"pass\",\n\t\"email\" : \"email@gmail.com\"\n}"
-      },
-      "Produk" : {
-        "type" : "object",
-        "properties" : {
-          "nama_produk" : {
-            "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation"
           },
-          "harga_produk" : {
-            "type" : "string"
-          },
-          "desk_produk" : {
-            "type" : "string"
-          },
-          "ketersediaan" : {
-            "type" : "boolean"
+          "500" : {
+            "description" : "Server Error"
           }
-        },
-        "example" : "{\n\t\"nama_produk\": \"Lifebouy\",\n\t\"harga_produk\": \"10000\",\n\t\"desk_produk\" : \"Sabun mandi\",\n\t\"ketersediaan\" : false\n}"
+        }
+      }
+    },
+    "/api/contact/edit" : {
+      "put" : {
+        "tags" : [ "contact" ],
+        "summary" : "Edit Contact",
+        "consumes" : [ ],
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "required" : true,
+          "schema" : {
+            "type" : "object",
+            "properties" : {
+              "name" : {
+                "type" : "string"
+              },
+              "picture" : {
+                "type" : "string"
+              },
+              "phoneNumber" : {
+                "type" : "string"
+              },
+              "address" : {
+                "type" : "string"
+              }
+            }
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success"
+          },
+          "500" : {
+            "description" : "Server Error"
+          }
+        }
+      }
+    },
+    "/api/contact/delete/" : {
+      "delete" : {
+        "tags" : [ "contact" ],
+        "summary" : "Delete Contact",
+        "parameters" : [ {
+          "name" : "name",
+          "in" : "query",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success"
+          },
+          "500" : {
+            "description" : "Server Error"
+          }
+        }
+      }
+    },
+    "/api/contact" : {
+      "get" : {
+        "tags" : [ "contact" ],
+        "summary" : "Search Contact",
+        "parameters" : [ {
+          "name" : "search",
+          "in" : "query",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success"
+          },
+          "500" : {
+            "description" : "Server Error"
+          }
+        }
+      }
+    },
+    "/api/contactpg" : {
+      "get" : {
+        "tags" : [ "contact" ],
+        "summary" : "Get Contact Paging",
+        "parameters" : [ {
+          "name" : "pageNo",
+          "in" : "query",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "size",
+          "in" : "query",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success"
+          },
+          "500" : {
+            "description" : "Server Error"
+          }
+        }
       }
     }
+  },
+  "definitions" : {
+    "Contact" : {
+      "type" : "object",
+      "properties" : {
+        "name" : {
+          "type" : "string"
+        },
+        "picture" : {
+          "type" : "string"
+        },
+        "phoneNumber" : {
+          "type" : "string"
+        },
+        "address" : {
+          "type" : "string"
+        }
+      },
+      "example" : "\n{\n  \"name\" : \"Ciro Immobile\",\n  \"picture\" : \"https://images2.minutemediacdn.com/image/upload/c_fill,w_912,h_516,f_auto,q_auto,g_auto/shape/cover/sport/59f482bc2b3a7ef12b000001.jpg\",\n  \"phoneNumber\": \"08098999\",\n  \"address\" : \"roma, italy\"\n}"
+    }
   }
+}

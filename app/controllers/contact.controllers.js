@@ -91,7 +91,7 @@ exports.edit_contact = (req, res) => {
 
 exports.delete_contact = (req, res) => {
     db.collection('contact').findOneAndDelete({
-            name: req.body.name
+            name: req.query.name
         })
         .then(result => {
             res.status(200)
@@ -111,7 +111,7 @@ exports.delete_contact = (req, res) => {
 }
 
 exports.search_contact = (req, res) => {
-    const tekscari = req.body.text;
+    const tekscari = req.query.search;
 
     db.collection('contact').find({
             $or: [{
