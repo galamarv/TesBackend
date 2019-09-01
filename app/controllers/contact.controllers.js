@@ -12,7 +12,7 @@ client.connect(err => {
     client.close();
 });
 
-exports.show_contact = (req, res) => {
+exports.showall_contact = (req, res) => {
     db.collection('contact').find().toArray().then((result) => {
             res.status(200)
                 .send({
@@ -135,4 +135,33 @@ exports.search_contact = (req, res) => {
             });
         })
 
+}
+
+exports.show_contact = (req, res) => {
+    var pageNo = parseInt(req.query.pageNo)
+    var size = parseInt(req.query.size)
+    var query = {}
+    if (pageNo < 0 || pageNo === 0) {
+        response = {
+            "error": true,
+            "message": "invalid page number, should start with 1"
+        };
+        return res.send(response)
+    }
+    query.skip = size * (pageNo - 1)
+    query.limit = size
+    db.collection('contact').find({}, query).toArray().then((result) => {
+            res.status(200)
+                .send({
+                    status: true,
+                    result: result,
+                    error: null
+                })
+            console.log(result)
+        })
+        .catch(err => {
+            res.status(500).send({
+                error: err.message
+            });
+        })
 }
