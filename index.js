@@ -16,12 +16,10 @@ const client = new MongoClient(dbConfig.mongoURL, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
-var db
 
 client.connect(err => {
     if (err) return console.log(err)
     console.log("Database Connected successfully");
-    db = client.db("test");
     client.close();
 });
 
@@ -39,6 +37,8 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 app.get('/', (req, res) => res.send('Welcome'));
+require('./app/routes/contact.routes')(app);
+
 
 app.listen(port, () => {
 	console.log(`App listening on http://localhost:${port}`)
