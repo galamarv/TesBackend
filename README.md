@@ -3,7 +3,7 @@
 
 # API Documentation
 
-You can check api documentation [here] (http://localhost:6780/api-docs)
+You can check api documentation [here](http://localhost:6780/api-docs)
 
 ## Available Scripts
 
